@@ -17,6 +17,7 @@ const Content = [
       height={2496}
       width={1666}
       alt="Image of therapist Aaron Altman"
+      className="mt-0"
     />),
     anchor: 'about'
   },
@@ -59,29 +60,34 @@ export default function Home() {
       <section className="">
         <div className="prose w-full m-auto pt-16 pb-24 text-center">
           <div className="mb-1">
-            <h1 className='text-5xl'>Start therapy <br />with Aaron.</h1>
+            <h1 className='lg:text-5xl'>Start therapy <br />with Aaron.</h1>
           </div>
-          <div>
-            <p className="mt-1 text-xl">Currently accepting new teletheraphy clients in Oregon.</p>
-            <Link className="btn btn-primary mr-8" href="https://kelledebruin.com/client-portal-contact-information/" target="_blank">Request an appointment</Link>
-            <a className="btn btn-primary" href="#contact">Schedule a free consultation </a></div></div>
+          <div className="px-3 flex flex-col">
+            <p className="mt-1 px-4 text-lg lg:text-xl">Currently accepting new teletheraphy clients in Oregon.</p>
+            <div className="flex flex-col mx-8 md:mx-0 md:flex-row justify-center">
+              <Link className="btn btn-primary mb-4 md:mr-8" href="https://kelledebruin.com/client-portal-contact-information/" target="_blank">Request an appointment</Link>
+              <a className="btn btn-primary" href="#contact">Schedule a free consultation </a></div>
+          </div>
+        </div>
       </section>
       {Content.map((item, index) => {
         if (item.image) {
           return (
-            <section className={`flex flex-row ${item.background}`} id={item.anchor} key={index}>
-              <div className="prose basis-1/3">
+            <section className={`flex flex-col md:flex-row ${item.background}`} id={item.anchor} key={index}>
+              <div className="prose basis-1/3 hidden md:block ">
                 {item.image}
               </div>
-              <div className={`prose basis-2/3 p-24 ml-24 ${item.textcolor}`}>
+              <div className={`prose basis-2/3 p-24 md:ml-24 ${item.textcolor}`}>
                 <h1 className={`${item.textcolor}`}>{item.title}</h1>
+                <div className="avatar block md:hidden">
+                  <div className="w-72 rounded-full">{item.image}</div></div>
                 {item.text}
               </div>
             </section>
           )
         }
         return (
-          <section className={`${item.background} flex flex-row py-24 px-36 `} key={index} id={item.anchor}>
+          <section className={`${item.background} flex flex-col md:flex-row py-24 px-36 `} key={index} id={item.anchor}>
             <div className="prose basis-1/3"><h1>{item.title}</h1></div>
             <div className="prose basis-2/3 px-24">{item.text}</div>
           </section>
